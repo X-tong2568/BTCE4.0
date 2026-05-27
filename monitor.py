@@ -132,6 +132,7 @@ class Monitor:
                 if idx >= 3: break
                 try:
                     dyn_page = await self.context.new_page()
+                    dyn_page.set_viewport_size({"width": 1080, "height": 1920})
                     await dyn_page.goto(f"https://t.bilibili.com/{dyn_id}", wait_until="domcontentloaded", timeout=15000)
                     await asyncio.sleep(3)
                     card = dyn_page.locator('.bili-dyn-item, [class*="dyn-card"]').first
