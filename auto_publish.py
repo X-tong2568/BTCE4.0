@@ -8,6 +8,7 @@ import json
 import asyncio
 import time
 import random
+from typing import Optional
 import aiohttp
 from pathlib import Path
 from logger_config import logger
@@ -38,7 +39,7 @@ def _cookie_header(cookies: list) -> str:
     return "; ".join(f'{c["name"]}={c["value"]}' for c in cookies)
 
 
-async def upload_image(file_path: str, cookies: list) -> dict | None:
+async def upload_image(file_path: str, cookies: list) -> Optional[dict]:
     """
     上传截图到B站图床。
     返回图片信息dict（含image_url/image_width/image_height/img_size），失败返回None。
